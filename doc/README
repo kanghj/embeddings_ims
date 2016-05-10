@@ -1,0 +1,16 @@
+This is a brief introduction of the API of this system.
+
+You can start from the sg.edu.nus.comp.nlp.ims.implement package.
+In this package, you will find two classes:
+    1. sg.edu.nus.comp.nlp.ims.implement.CTrainModel
+        This is the main method for training. The compulsory parameters includes train.xml, train.key and save directory. You can specify the corpus Class, feature extractor, instance extractor and many other components with optional parameters.
+    2. sg.edu.nus.comp.nlp.ims.implement.CTester -- The main method for test.
+        This is the main method for test. The compulsory parameters includes model directory, test.xml and save directory. You can specify the corpus Class, feature extractor, instance extractor and many other components with optional parameters.
+
+In general, there are four main interfaces:
+    1. sg.edu.nus.comp.nlp.ims.corpus.ICorpus is an interface to load raw input texts and do some preprocessing.
+    2. sg.edu.nus.comp.nlp.ims.feature.IFeatureExtractor is an interface to extract features from ICorpus.
+    3. sg.edu.nus.comp.nlp.ims.instance.IInstanceExtractor is an interface to generate instances with the features extracted by IFeatureExtractor.
+    4. sg.edu.nus.comp.nlp.ims.ulti.IModelTrainer and sg.edu.nus.comp.nlp.ims.ulti.IEvaluator are interfaces to call classifiers to train or test instances extracted by IInstanceExtractor.
+
+Users can implement their own Class for the above four interfaces to build a personalized WSD system.

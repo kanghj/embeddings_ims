@@ -1,0 +1,6 @@
+1. improve the lemmatization strategy.
+	a. use more POS tag information,
+	b. find a better lemmatization tool instead of JWNL.
+2. improve the tokenization process.
+3. using config file instead of passing the parameters all by arguments.
+4. ...
