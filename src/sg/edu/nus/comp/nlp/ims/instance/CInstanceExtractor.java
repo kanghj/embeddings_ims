@@ -6,6 +6,7 @@
 package sg.edu.nus.comp.nlp.ims.instance;
 
 import sg.edu.nus.comp.nlp.ims.corpus.ICorpus;
+import sg.edu.nus.comp.nlp.ims.feature.IFeature;
 import sg.edu.nus.comp.nlp.ims.feature.IFeatureExtractor;
 
 /**
@@ -56,9 +57,19 @@ public class CInstanceExtractor implements IInstanceExtractor {
 				instance.setTag(tag);
 			}
 			this.m_FeatureExtractor.restart();
-			while (this.m_FeatureExtractor.hasNext()) {
-				instance.addFeature(this.m_FeatureExtractor.next());
+
+			try {
+				while (this.m_FeatureExtractor.hasNext()) {
+                    IFeature a = this.m_FeatureExtractor.next();
+
+                    instance.addFeature(a);
+                }
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Exception caught!"); // the printlns are for logging in heroku, because papertrail works directly with stdout
+				throw new RuntimeException("error getting next!", e);
 			}
+
 			this.m_Iterator++;
 			return instance;
 		}

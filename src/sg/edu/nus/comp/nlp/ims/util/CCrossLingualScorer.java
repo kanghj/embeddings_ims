@@ -18,10 +18,10 @@ import java.util.StringTokenizer;
 
 /**
  * a scorer for senseval format tasks
- * @author zhongzhi
+ * @author kanghj
  *
  */
-public class CScorer {
+public class CCrossLingualScorer {
 	// decimal format
 	protected NumberFormat m_Formatter3 = new DecimalFormat("#0.000");
 	// decimal format
@@ -40,12 +40,10 @@ public class CScorer {
 
 	/**
 	 * one instance
-	 * @author zhongzhi
 	 *
 	 */
-	public class Instance {
+	private static class Instance {
 		ArrayList<String> senses = new ArrayList<String>();
-//		ArrayList<Double> weights = null;
 	}
 
 	/**
@@ -104,11 +102,6 @@ public class CScorer {
 					correct /= answer.senses.size();
 				}
 				this.m_Correct += correct;
-				if (correct > 0) {
-					System.out.println("Instance " + id + " is correct!!");
-				} else {
-					System.out.println("Instance " + id + " is INCORRECT!!");
-				}
 			} else {
 				System.err.println("Instance [" + id + "] Key does not exsist.");
 			}
@@ -188,7 +181,7 @@ public class CScorer {
 			System.err.println("answer_file key_file");// -sensemap sense_map_file");
 			System.exit(1);
 		}
-		CScorer scorer = new CScorer();
+		CCrossLingualScorer scorer = new CCrossLingualScorer();
 //		Hashtable <String, String> coarse = new Hashtable <String, String>();
 //		// load sense map
 //		if (argmgr.has("sensemap")) {
@@ -204,7 +197,7 @@ public class CScorer {
 			StringTokenizer tokenizer = new StringTokenizer(line);
 			String id = tokenizer.nextToken();
 			id += "_" + tokenizer.nextToken();
-			Instance ins = scorer.new Instance();
+			Instance ins = new CCrossLingualScorer.Instance();
 			while (tokenizer.hasMoreTokens()) {
 				String token = tokenizer.nextToken();
 				if (token.equals("!!")) {
@@ -221,7 +214,7 @@ public class CScorer {
 			StringTokenizer tokenizer = new StringTokenizer(line);
 			String id = tokenizer.nextToken();
 			id += "_" + tokenizer.nextToken();
-			Instance ins = scorer.new Instance();
+			Instance ins = new CCrossLingualScorer.Instance();
 			while (tokenizer.hasMoreTokens()) {
 				String token = tokenizer.nextToken();
 				if (token.equals("!!")) {

@@ -7,6 +7,7 @@ package sg.edu.nus.comp.nlp.ims.corpus;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 //import java.util.List;
@@ -16,6 +17,7 @@ import org.jdom.*;
 import org.jdom.input.SAXBuilder;
 
 import sg.edu.nus.comp.nlp.ims.util.*;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * SensEval-2/3 and SemEval 2007 fine-grained all-words task test corpus.
@@ -72,6 +74,11 @@ public final class CAllWordsFineTaskCorpus extends CLexicalCorpus {
 		this.genInfo();
 		this.m_Ready = true;
 		return true;
+	}
+
+	@Override
+	public boolean load(StringReader p_Reader) throws Exception {
+		throw new NotImplementedException();
 	}
 
 	/**
@@ -137,10 +144,11 @@ public final class CAllWordsFineTaskCorpus extends CLexicalCorpus {
 				}
 			}
 		}
+
 		return builder.toString().trim();
 	}
 
-	private Pattern m_BePattern = Pattern.compile("'([sm]|re)");
+		private Pattern m_BePattern = Pattern.compile("'([sm]|re)");
 
 	/*
 	 * (non-Javadoc)

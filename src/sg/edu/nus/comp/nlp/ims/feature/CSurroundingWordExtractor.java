@@ -273,7 +273,7 @@ public class CSurroundingWordExtractor implements IFeatureExtractor {
 						if (this.filter(keyWord)) {
 							continue;
 						}
-						keyWord = sentence.getItem(i).get(g_LIDX);
+						keyWord = sentence.getItem(i).get(g_LIDX).intern();
 						if ((sentIdx != currentSent || i < this.m_IndexInSentence || i >= this.m_IndexInSentence + this.m_InstanceLength)
 								&& !this.m_SurroundingWordSet.contains(keyWord)) {
 							this.m_SurroundingWordSet.add(keyWord);

@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +29,9 @@ import net.didion.jwnl.dictionary.MorphologicalProcessor;
 public final class CJWNL {
 	private static Dictionary dictionary;
 	private static MorphologicalProcessor processor;
+
+	private static Object sharedLock = new Object(); // lock for dictionary and processor
+
 	private static Hashtable<String, String> cacheNOUN;
 	private static Hashtable<String, String> cacheVERB;
 	private static Hashtable<String, String> cacheADJ;
@@ -52,9 +56,13 @@ public final class CJWNL {
 	 *             jwnl exception
 	 */
 	public static void initial(InputStream p_Prop) throws JWNLException {
+		if (STATE) { // don't need to initialise again if already initalised
+			return;
+		}
+
 		STATE = false;
 		String os = System.getProperty("os.name");
-		System.setProperty("os.name", "Linux");
+		System.setProperty("os.name", "unix");
 		try {
 			JWNL.initialize(p_Prop);
 		} catch (JWNLException e) {
@@ -83,6 +91,7 @@ public final class CJWNL {
 	 */
 	public static void checkStatus() {
 		if (!isInitialed()) {
+			System.out.println("CJWNL checkstatus: fail!" );
 			throw new IllegalStateException("JWNL has not been initialed.");
 		}
 	}
@@ -116,16 +125,19 @@ public final class CJWNL {
 	 */
 	public static boolean hasSense(String p_Token, POS p_POS) {
 		checkStatus();
-		try {
-			if (p_POS != null) {
-				IndexWord indexWord = dictionary.lookupIndexWord(p_POS, p_Token);
-				if (indexWord != null && indexWord.getLemma().replace(' ', '_').equals(p_Token)) {
-					return true;
+		synchronized (sharedLock) {
+			try {
+				if (p_POS != null) {
+					IndexWord indexWord = dictionary.lookupIndexWord(p_POS, p_Token);
+					if (indexWord != null && indexWord.getLemma().replace(' ', '_').equals(p_Token)) {
+						return true;
+					}
 				}
+			} catch (JWNLException e) {
+				System.out.println("CJWNL#hasSense has JWNLException");
 			}
-		} catch (JWNLException e) {
+			return false;
 		}
-		return false;
 	}
 
 	/**
@@ -156,20 +168,22 @@ public final class CJWNL {
 	 * @return POS
 	 */
 	public static String getPOS(String p_SenseKey) {
-		Matcher matcher = POSPATTERN.matcher(p_SenseKey);
-		if (matcher.find()) {
-			String stype = matcher.group(1);
-			if (stype.equals("1")) {
-				return "n";
-			} else if (stype.equals("2")) {
-				return "v";
-			} else if (stype.equals("3") || stype.equals("5")) {
-				return "a";
-			} else if (stype.equals("4")) {
-				return "r";
+		synchronized (sharedLock) {
+			Matcher matcher = POSPATTERN.matcher(p_SenseKey);
+			if (matcher.find()) {
+				String stype = matcher.group(1);
+				if (stype.equals("1")) {
+					return "n";
+				} else if (stype.equals("2")) {
+					return "v";
+				} else if (stype.equals("3") || stype.equals("5")) {
+					return "a";
+				} else if (stype.equals("4")) {
+					return "r";
+				}
 			}
+			return null;
 		}
-		return null;
 	}
 
 	/**
@@ -180,11 +194,13 @@ public final class CJWNL {
 	 * @return lemma
 	 */
 	public static String getLemma(String p_SenseKey) {
-		Matcher matcher = LEMMAPATTERN.matcher(p_SenseKey);
-		if (matcher.find()) {
-			return matcher.group(1);
+		synchronized (sharedLock) {
+			Matcher matcher = LEMMAPATTERN.matcher(p_SenseKey);
+			if (matcher.find()) {
+				return matcher.group(1);
+			}
+			return null;
 		}
-		return null;
 	}
 
 	/**
@@ -203,42 +219,45 @@ public final class CJWNL {
 		}
 		p_Token = p_Token.trim().toLowerCase();
 		String rootForm = p_Token;
-		try {
-			if (!rootForm.isEmpty()) {
-				if (p_POS.equals("n")) {
-					if (cacheNOUN.containsKey(p_Token)) {
-						rootForm = cacheNOUN.get(p_Token);
-					} else {
-						rootForm = getRootForm(POS.NOUN, p_Token);
-						cacheNOUN.put(p_Token, rootForm);
-					}
-				} else if (p_POS.equals("v")) {
-					if (cacheVERB.containsKey(p_Token)) {
-						rootForm = cacheVERB.get(p_Token);
-					} else {
-						rootForm = getRootForm(POS.VERB, p_Token);
-						cacheVERB.put(p_Token, rootForm);
-					}
-				} else if (p_POS.equals("a")) {
-					if (cacheADJ.containsKey(p_Token)) {
-						rootForm = cacheADJ.get(p_Token);
-					} else {
-						rootForm = getRootForm(POS.ADJECTIVE, p_Token);
-						cacheADJ.put(p_Token, rootForm);
-					}
-				} else if (p_POS.equals("r")) {
-					if (cacheADV.containsKey(p_Token)) {
-						rootForm = cacheADV.get(p_Token);
-					} else {
-						rootForm = getRootForm(POS.ADVERB, p_Token);
-						cacheADV.put(p_Token, rootForm);
+		synchronized (sharedLock) {
+			try {
+				if (!rootForm.isEmpty()) {
+					if (p_POS.equals("n")) {
+						if (cacheNOUN.containsKey(p_Token)) {
+							rootForm = cacheNOUN.get(p_Token);
+						} else {
+							rootForm = getRootForm(POS.NOUN, p_Token);
+							cacheNOUN.put(p_Token, rootForm);
+						}
+					} else if (p_POS.equals("v")) {
+						if (cacheVERB.containsKey(p_Token)) {
+							rootForm = cacheVERB.get(p_Token);
+						} else {
+							rootForm = getRootForm(POS.VERB, p_Token);
+							cacheVERB.put(p_Token, rootForm);
+						}
+					} else if (p_POS.equals("a")) {
+						if (cacheADJ.containsKey(p_Token)) {
+							rootForm = cacheADJ.get(p_Token);
+						} else {
+							rootForm = getRootForm(POS.ADJECTIVE, p_Token);
+							cacheADJ.put(p_Token, rootForm);
+						}
+					} else if (p_POS.equals("r")) {
+						if (cacheADV.containsKey(p_Token)) {
+							rootForm = cacheADV.get(p_Token);
+						} else {
+							rootForm = getRootForm(POS.ADVERB, p_Token);
+							cacheADV.put(p_Token, rootForm);
+						}
 					}
 				}
+			} catch (Exception e) {
+				System.out.println("CJWNL getRootForm exception caught!");
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+			return rootForm;
 		}
-		return rootForm;
 	}
 
 	// legal pattern
@@ -249,25 +268,36 @@ public final class CJWNL {
 
 	@SuppressWarnings("unchecked")
 	private static String getRootForm(POS p_POS, String p_Token) throws JWNLException {
-		checkStatus();
-		if (LEGALPATTERN.matcher(p_Token).matches()) {
-			if (DELIMITERPATTERN.matcher(p_Token).find()) {
-				List<String> indexWords = processor.lookupAllBaseForms(p_POS, p_Token);
-				if (indexWords.size() > 0) {
-					for (String lemma:indexWords) {
-						if (lemma.equals(p_Token)) {
-							return lemma;
+		synchronized (sharedLock) {
+			checkStatus();
+			if (LEGALPATTERN.matcher(p_Token).matches()) {
+				if (DELIMITERPATTERN.matcher(p_Token).find()) {
+					//System.out.println("CJWNL get RootForm before lookup all baseFOrm");
+					List<String> indexWords = processor.lookupAllBaseForms(p_POS, p_Token);
+					//System.out.println("CJWNL get RootForm after lookup all baseFOrm");
+					if (indexWords.size() > 0) {
+						for (String lemma : indexWords) {
+							if (lemma.equals(p_Token)) {
+								return lemma;
+							}
 						}
+						p_Token = indexWords.get(0);
 					}
-					p_Token = indexWords.get(0);
-				}
-			} else {
-				IndexWord indexWord = processor.lookupBaseForm(p_POS, p_Token);
-				if (indexWord != null) {
-					p_Token = indexWord.getLemma();
+				} else {
+					try {
+						//System.out.println("CJWNL get RootForm before lookupbaseFOrm");
+						IndexWord indexWord = processor.lookupBaseForm(p_POS, p_Token);
+						//System.out.println("CJWNL get RootForm after lookupbaseFOrm");
+						if (indexWord != null) {
+							p_Token = indexWord.getLemma();
+						}
+					} catch (NoSuchElementException noSuchElementException) {
+						System.err.println("NoSuchElementException caught");
+						System.out.println("NoSuchElementException caught in CJWNL getRootForm");
+					}
 				}
 			}
+			return p_Token;
 		}
-		return p_Token;
 	}
 }

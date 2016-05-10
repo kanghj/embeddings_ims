@@ -7,10 +7,12 @@ package sg.edu.nus.comp.nlp.ims.corpus;
 
 import java.io.BufferedReader;
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import sg.edu.nus.comp.nlp.ims.util.*;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * interface for a plain text. extract all the content words according to the
@@ -79,6 +81,11 @@ public class CAllWordsPlainCorpus extends ACorpus {
 		this.genInfo();
 		this.m_Ready = true;
 		return true;
+	}
+
+	@Override
+	public boolean load(StringReader p_Reader) throws Exception {
+		throw new NotImplementedException();
 	}
 
 	/**

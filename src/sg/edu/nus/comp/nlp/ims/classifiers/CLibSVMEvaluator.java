@@ -5,21 +5,13 @@
  */
 package sg.edu.nus.comp.nlp.ims.classifiers;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 
-import libsvm.svm;
-import libsvm.svm_model;
-import libsvm.svm_node;
-import libsvm.svm_problem;
+import libsvm.*;
 
 import sg.edu.nus.comp.nlp.ims.io.CLibSVMLexeltWriter;
 import sg.edu.nus.comp.nlp.ims.io.ILexeltWriter;
@@ -113,6 +105,7 @@ public class CLibSVMEvaluator extends APreloadEvaluator {
 	 */
 	@Override
 	public Object evaluate(Object p_Lexelt) throws Exception {
+		System.out.println("LIBSVMEVALUATOR start");
 		ILexelt lexelt = (ILexelt) p_Lexelt;
 		String lexeltID = lexelt.getID();
 		IStatistic stat = (IStatistic) this.getStatistic(lexeltID);
@@ -158,6 +151,13 @@ public class CLibSVMEvaluator extends APreloadEvaluator {
 			svm.svm_get_labels(model, labels);
 			ILexeltWriter lexeltWriter = new CLibSVMLexeltWriter();
 			svm_problem instances = (svm_problem) lexeltWriter.getInstances(lexelt);
+			svm_parameter param = new svm_parameter();
+			svm.svm_check_parameter(instances, param);
+
+			System.out.println("LIBSVMEVALUATOR");
+			System.out.println(param);
+			System.out.println(param.kernel_type);
+
 			retVal.lexelt = lexelt.getID();
 			retVal.docs = new String[lexelt.size()];
 			retVal.ids = new String[lexelt.size()];
@@ -286,7 +286,9 @@ public class CLibSVMEvaluator extends APreloadEvaluator {
 			}
 		} else {
 			CStatistic tmp = new CStatistic();
-			if (!tmp.loadFromFile(statFile.getAbsolutePath())) {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					new GZIPInputStream(new FileInputStream(statFile)), "ISO8859-1"));
+			if (!tmp.loadFromFile(reader)) {
 				tmp = null;
 			}
 			stat = tmp;
@@ -295,3 +297,4 @@ public class CLibSVMEvaluator extends APreloadEvaluator {
 	}
 
 }
+

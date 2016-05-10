@@ -5,12 +5,7 @@
  */
 package sg.edu.nus.comp.nlp.ims.implement;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -19,6 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import sg.edu.nus.comp.nlp.ims.classifiers.CLibLinearEvaluator;
+import sg.edu.nus.comp.nlp.ims.classifiers.CLibSVMEvaluator;
 import sg.edu.nus.comp.nlp.ims.classifiers.IEvaluator;
 import sg.edu.nus.comp.nlp.ims.corpus.*;
 import sg.edu.nus.comp.nlp.ims.feature.*;
@@ -138,6 +134,8 @@ public class CTester {
 	 */
 	public void test(Reader p_XmlReader, Hashtable<String, ArrayList<String>> p_InstanceLexeltIDs)
 			throws Exception {
+        System.out.println("start of test");
+
 		IInstanceExtractor instExtractor = (IInstanceExtractor) Class.forName(
 				this.m_InstanceExtractorName).newInstance();
 		IFeatureExtractor featExtractor = (IFeatureExtractor) Class.forName(
@@ -151,7 +149,10 @@ public class CTester {
 		corpus.setTokenized(this.m_Tokenized);
 		corpus.setPOSTagged(this.m_POSTagged);
 		corpus.setLemmatized(this.m_Lemmatized);
+        System.out.println("before loading xml file");
 		corpus.load(p_XmlReader);
+        System.out.println("after loading xml file");
+
 
 		if (this.m_Writer != null && CPlainCorpusResultWriter.class.isInstance(this.m_Writer)) {
 			((CPlainCorpusResultWriter)this.m_Writer).setCorpus(corpus);
@@ -161,6 +162,7 @@ public class CTester {
 
 		Hashtable<String, ILexelt> lexelts = new Hashtable<String, ILexelt>();
 		while (instExtractor.hasNext()) {
+
 			IInstance instance = instExtractor.next();
 			String lexeltID = instance.getLexeltID();
 			if (p_InstanceLexeltIDs != null) {
@@ -190,10 +192,78 @@ public class CTester {
 		Collections.sort(lexeltIDs);
 		for (String lexeltID : lexeltIDs) {
 			System.err.println(lexeltID);
-			Object lexelt = lexelts.remove(lexeltID);
+			System.out.println("CTester: " + lexeltID);
+			ILexelt lexelt = lexelts.remove(lexeltID);
 			this.m_Results.add(this.m_Evaluator.evaluate(lexelt));
+
 		}
 	}
+
+    public void testWithXmlString(String p_xmlString, Hashtable<String, ArrayList<String>> p_InstanceLexeltIDs)
+            throws Exception {
+        System.out.println("start of test using string");
+
+        IInstanceExtractor instExtractor = (IInstanceExtractor) Class.forName(
+                this.m_InstanceExtractorName).newInstance();
+        IFeatureExtractor featExtractor = (IFeatureExtractor) Class.forName(
+                this.m_FeatureExtractorName).newInstance();
+        ACorpus corpus = (ACorpus) Class.forName(this.m_CorpusName)
+                .newInstance();
+        if (this.m_Delimiter != null) {
+            corpus.setDelimiter(this.m_Delimiter);
+        }
+        corpus.setSplit(this.m_Split);
+        corpus.setTokenized(this.m_Tokenized);
+        corpus.setPOSTagged(this.m_POSTagged);
+        corpus.setLemmatized(this.m_Lemmatized);
+        System.out.println("before loading xml string");
+        corpus.load(new StringReader(p_xmlString));
+        System.out.println("after loading xml string");
+
+
+        if (this.m_Writer != null && CPlainCorpusResultWriter.class.isInstance(this.m_Writer)) {
+            ((CPlainCorpusResultWriter)this.m_Writer).setCorpus(corpus);
+        }
+        instExtractor.setCorpus(corpus);
+        instExtractor.setFeatureExtractor(featExtractor);
+
+        Hashtable<String, ILexelt> lexelts = new Hashtable<String, ILexelt>();
+        while (instExtractor.hasNext()) {
+
+            IInstance instance = instExtractor.next();
+            String lexeltID = instance.getLexeltID();
+            if (p_InstanceLexeltIDs != null) {
+                if (p_InstanceLexeltIDs.containsKey(instance.getID())) {
+                    ArrayList<String> ids = p_InstanceLexeltIDs.get(instance
+                            .getID());
+                    for (int i = 0; i < ids.size(); i++) {
+                        lexeltID = ids.get(i);
+                        if (!lexelts.containsKey(lexeltID)) {
+                            lexelts.put(lexeltID, new CLexelt(lexeltID));
+                        }
+                        lexelts.get(lexeltID).addInstance(instance);
+                    }
+                } else {
+                    throw new Exception("instance \"" + instance.getID()
+                            + "\" is not defined in lexelt file.");
+                }
+            } else {
+                if (!lexelts.containsKey(lexeltID)) {
+                    lexelts.put(lexeltID, new CLexelt(lexeltID));
+                }
+                lexelts.get(lexeltID).addInstance(instance);
+            }
+        }
+        ArrayList<String> lexeltIDs = new ArrayList<String>();
+        lexeltIDs.addAll(lexelts.keySet());
+        Collections.sort(lexeltIDs);
+        for (String lexeltID : lexeltIDs) {
+            System.err.println(lexeltID);
+            System.out.println("CTester: " + lexeltID);
+			ILexelt lexelt = lexelts.remove(lexeltID);
+            this.m_Results.add(this.m_Evaluator.evaluate(lexelt));
+        }
+    }
 
 	/**
 	 * get results
@@ -427,8 +497,8 @@ public class CTester {
 			if (argmgr.has("r")) {
 				writerName = argmgr.get("r");
 			}
-			IResultWriter writer = (IResultWriter) Class.forName(writerName)
-					.newInstance();
+			IResultWriter writer = (IResultWriter) Class.forName(writerName).newInstance();
+
 			writer.setOptions(new String[] { "-s", saveDir });
 
 			tester.setEvaluator(evaluator);
@@ -472,6 +542,7 @@ public class CTester {
 			for (File testFile : testFiles) {
 				System.err.println("testing " + testFile.getAbsolutePath());
 				if (lexeltFile != null) {
+					System.err.println("testing " + lexeltFile);
 					tester.test(testFile.getAbsolutePath(), lexeltFile);
 				} else {
 					tester.test(testFile.getAbsolutePath());

@@ -7,6 +7,7 @@ package sg.edu.nus.comp.nlp.ims.corpus;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
 import sg.edu.nus.comp.nlp.ims.util.*;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * SemEval 2007 coarse-grained all-words task test corpus.
@@ -71,6 +73,11 @@ public class CAllWordsCoarseTaskCorpus extends CLexicalCorpus {
 		this.genInfo();
 		this.m_Ready = true;
 		return true;
+	}
+
+	@Override
+	public boolean load(StringReader p_Reader) throws Exception {
+		throw new NotImplementedException();
 	}
 
 	/**

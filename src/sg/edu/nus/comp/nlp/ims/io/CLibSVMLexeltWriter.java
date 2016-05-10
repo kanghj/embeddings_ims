@@ -204,12 +204,23 @@ public class CLibSVMLexeltWriter implements ILexeltWriter {
 		for (int i = 0;i < size;i++) {
 			IInstance instance = p_Lexelt.getInstance(i);
 			svm_node[] featureVector = this.getVector(instance, stat, indice);
-			ArrayList <String> tags = instance.getTag();
+			/*ArrayList <String> tags = instance.getTag();
 			if (tags.size() > 0) {
 				for (String tag:tags) {
 					double c = Double.parseDouble(tag);
 					featureVectors.add(Arrays.copyOf(featureVector, featureVector.length));
 					classes.add(c);
+				}
+			} else {
+				featureVectors.add(featureVector);
+				classes.add(new Double(0));
+			}*/
+			ArrayList <String> tags = instance.getTag();
+			if (tags.size() > 0) {
+				for (Integer tag : this.processTags(stat, tags)) {
+					featureVectors.add(Arrays.copyOf(featureVector, featureVector.length));
+
+					classes.add(new Double(tag));
 				}
 			} else {
 				featureVectors.add(featureVector);
@@ -246,6 +257,7 @@ public class CLibSVMLexeltWriter implements ILexeltWriter {
 					}
 					iTag++;
 	            }
+				System.out.println(this.getClass() + " itag : " + iTag);
 				retVal.add(iTag);
 			}
 		}

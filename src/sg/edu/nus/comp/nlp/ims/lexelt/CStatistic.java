@@ -210,6 +210,62 @@ public class CStatistic implements IStatistic {
 		return this.m_M2;
 	}
 
+	// same as loadFromFile(String)
+	public boolean loadFromFile(BufferedReader reader) {
+		this.clear();
+		try {
+			String line;
+			String[] tokens;
+
+			line = reader.readLine();
+			tokens = this.m_SplitPattern.split(line);
+			for (int i = 0; i < tokens.length; i++) {
+				this.m_TagMap.put(tokens[i], i);
+				this.m_Tags.add(tokens[i]);
+			}
+			line = reader.readLine();
+			tokens = this.m_SplitPattern.split(line);
+			for (int i = 0; i < tokens.length; i++) {
+				this.m_TypeEnum.add((Class<? extends IFeature>) Class
+						.forName(tokens[i]));
+			}
+			while ((line = reader.readLine()) != null) {
+				Hashtable<String, Integer> valueMap = new Hashtable<String, Integer>();
+				tokens = this.m_SplitPattern.split(line);
+				String key = tokens[0];
+				this.m_KeyMap.put(key, this.m_Keys.size());
+				this.m_Keys.add(key);
+				int type = Integer.parseInt(tokens[1]);
+				this.m_Types.add(type);
+				int iValue = 0;
+
+				for (int i = 2; i < tokens.length; i++, iValue++) {
+					if (!valueMap.containsKey(tokens[i])) {
+						valueMap.put(tokens[i], iValue);
+
+					} else {
+						String dummyTokenValue = tokens[i] + "_dummy";
+						while (valueMap.containsKey(dummyTokenValue)) {
+							dummyTokenValue += "1";
+						}
+						valueMap.put(dummyTokenValue, iValue); // add a dummy so that the length is as expected in future steps
+						System.out.println("need dummy");
+					}
+				}
+				this.m_Values.add(valueMap);
+			}
+			reader.close();
+
+			this.m_Status = true;
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * @see sg.edu.nus.comp.nlp.ims.lexelt.IStatistic#loadFromFile(java.lang.String)
@@ -475,7 +531,7 @@ public class CStatistic implements IStatistic {
 	 */
 	public List<String> getValue(int p_Index) {
 		if (p_Index >= 0 && p_Index < this.m_Keys.size()) {
-			String[] values = new String[this.m_Values.get(p_Index).size()];
+			String[] values = new String[this.m_Values.get(p_Index).size() ];
 			for (Map.Entry<String, Integer> i : this.m_Values.get(p_Index)
 					.entrySet()) {
 				values[i.getValue()] = i.getKey();

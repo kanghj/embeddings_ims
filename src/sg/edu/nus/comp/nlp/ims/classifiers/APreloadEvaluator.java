@@ -28,7 +28,7 @@ public abstract class APreloadEvaluator implements IEvaluator {
 	// sense index
 	protected ISenseIndex m_SenseIndex = null;
 	// default capacity
-	protected int m_Capacity = 100;
+	protected int m_Capacity = 2000;
 	// classifier models
 	protected Object[] m_Classifiers = null;
 	// classifier statistics
@@ -131,6 +131,7 @@ public abstract class APreloadEvaluator implements IEvaluator {
 	 */
 	protected Object getStatistic(String p_LexeltID) throws Exception {
 		Object stat = null;
+		System.out.println("APreloadEvaluator " + p_LexeltID);
 		if (this.m_ReverseIndice == null) {
 			return this.loadStatisticFromDisk(p_LexeltID);
 		} else if (this.m_ReverseIndice.containsKey(p_LexeltID)) {

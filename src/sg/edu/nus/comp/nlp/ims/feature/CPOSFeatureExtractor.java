@@ -160,9 +160,9 @@ public class CPOSFeatureExtractor implements IFeatureExtractor {
 	 */
 	protected String formPOSName(int p_Index) {
 		if (p_Index < 0) {
-			return "POS_" + -p_Index;
+			return ("POS_" + -p_Index).intern();
 		}
-		return "POS" + p_Index;
+		return ("POS" + p_Index).intern();
 	}
 
 	/*

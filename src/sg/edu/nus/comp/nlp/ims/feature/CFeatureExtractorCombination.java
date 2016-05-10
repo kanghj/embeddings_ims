@@ -86,7 +86,7 @@ public class CFeatureExtractorCombination implements IFeatureExtractor {
 	 * @see sg.edu.nus.comp.nlp.ims.feature.IFeatureExtractor#hasNext()
 	 */
 	@Override
-	public boolean hasNext() {
+	public boolean hasNext() throws Exception {
 		if (this.m_CurrentFeature != null) {
 			return true;
 		}
@@ -112,9 +112,13 @@ public class CFeatureExtractorCombination implements IFeatureExtractor {
 	@Override
 	public IFeature next() {
 		IFeature feature = null;
-		if (this.hasNext()) {
-			feature = this.m_CurrentFeature;
-			this.m_CurrentFeature = null;
+		try {
+			if (this.hasNext()) {
+				feature = this.m_CurrentFeature;
+				this.m_CurrentFeature = null;
+			}
+		} catch (Exception e) {
+			throw new RuntimeException("Exception caught in next while geting next feature", e);
 		}
 		return feature;
 	}

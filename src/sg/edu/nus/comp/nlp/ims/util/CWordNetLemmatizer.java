@@ -37,10 +37,13 @@ public class CWordNetLemmatizer implements ILemmatizer {
 	 */
 	@Override
 	public String lemmatize(String[] input) {
+		//System.out.println("CWordNetLemmatizer lemmatize start");
 		String word = input[0].toLowerCase();
 		String pos = input[1];
+		//System.out.println("CWordNetLemmatizer lemmatize start: (" + word  + ", " + pos + ") ");
 		boolean force = false;
 		if (input.length > 2 && input[2] != null) {
+			//System.out.println("CWordNetLemmatizer lemmatize force! : (" + word  + ", " + pos + ") ");
 			force = true;
 		}
 		String lemma = word.toLowerCase();
@@ -48,10 +51,13 @@ public class CWordNetLemmatizer implements ILemmatizer {
 			lemma = CJWNL.getRootForm(word, pos);
 		} else if (this.m_AlphabeticPattern.matcher(word).find()
 				&& !this.m_EfficientPattern.matcher(word).find()) {
+			//System.out.println("CWordNetLemmatizer in branch: (" + word  + ", " + pos + ") ");
 			lemma = CJWNL.getRootForm(word, pos);
+			//System.out.println("CWordNetLemmatizer in branch after CJWNL getRootForm: (" + word  + ", " + pos + ") ");
 			String[] toks = this.m_DelimiterPattern.split(word);
 			if (toks.length >= 2) {
 				for (int start = 0; start < toks.length; start++) {
+					//System.out.println("CWordNetLemmatizer in branch in loop : " + start + "(" + word  + ", " + pos + ") ");
 					if (lemma.equals(word)) {
 						break;
 					}
@@ -77,6 +83,7 @@ public class CWordNetLemmatizer implements ILemmatizer {
 				}
 			}
 		}
+		//System.out.println("CWordNetLemmatizer lemmatize end :" + word );
 		return lemma.replace(' ', '_');
 	}
 

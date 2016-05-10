@@ -5,13 +5,7 @@
  */
 package sg.edu.nus.comp.nlp.ims.classifiers;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.StringReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -86,7 +80,9 @@ public class CGISEvaluator extends APreloadEvaluator {
 			}
 		} else {
 			CStatistic tmp = new CStatistic();
-			if (!tmp.loadFromFile(statFile.getAbsolutePath())) {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					new GZIPInputStream(new FileInputStream(statFile)), "ISO8859-1"));
+			if (!tmp.loadFromFile(reader)) {
 				tmp = null;
 			}
 			stat = tmp;

@@ -6,6 +6,7 @@
 package sg.edu.nus.comp.nlp.ims.corpus;
 
 import java.io.Reader;
+import java.io.StringReader;
 
 /**
  * corpus interface. a corpus consists of several sentences
@@ -116,4 +117,6 @@ public interface ICorpus {
 	 * @return ready or not
 	 */
 	public boolean load(Reader p_XmlReader) throws Exception;
+
+	public boolean load(StringReader p_StringReader) throws Exception;
 }

@@ -59,6 +59,7 @@ public class CResultWriter implements IResultWriter {
 		String savePath = this.getFile(info.getID());
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
 				new FileOutputStream(savePath)));
+
 		for (int instIdx = 0; instIdx < info.size(); instIdx++) {
 			String docID = info.getDocID(instIdx);
 			String id = info.getID(instIdx);
@@ -69,6 +70,8 @@ public class CResultWriter implements IResultWriter {
 			writer.write(" ");
 			writer.write(id);
 			writer.write(" ");
+			System.out.println("CResultWriter : " );
+			System.out.println(instIdx + "," + info.getAnswer(instIdx));
 			writer.write(info.classes[info.getAnswer(instIdx)]);
 			writer.newLine();
 		}

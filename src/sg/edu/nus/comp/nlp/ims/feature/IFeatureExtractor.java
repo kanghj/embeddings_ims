@@ -51,13 +51,13 @@ public interface IFeatureExtractor {
 	 * 
 	 * @return has or not
 	 */
-	public boolean hasNext();
+	public boolean hasNext() throws Exception;
 
 	/**
 	 * get the next feature
 	 * 
 	 * @return feature
 	 */
-	public IFeature next();
+	public IFeature next() throws Exception;
 
 }

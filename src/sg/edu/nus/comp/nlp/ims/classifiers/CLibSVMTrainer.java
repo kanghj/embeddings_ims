@@ -39,7 +39,7 @@ public class CLibSVMTrainer implements IModelTrainer {
 		this.m_Param.eps = 1e-3;
 		this.m_Param.p = 0.1;
 		this.m_Param.shrinking = 1;
-		this.m_Param.probability = 0;
+		this.m_Param.probability = 1;
 		this.m_Param.nr_weight = 0;
 		this.m_Param.weight_label = new int[0];
 		this.m_Param.weight = new double[0];
@@ -104,6 +104,8 @@ public class CLibSVMTrainer implements IModelTrainer {
 			svm_model model = libsvm.svm.svm_train(prob, this.m_Param);
 			retVal.model = model;
 		}
+
+		System.out.println("LIBSVMTRAINER :::: " + this.m_Param.kernel_type);
 		return retVal;
 	}
 

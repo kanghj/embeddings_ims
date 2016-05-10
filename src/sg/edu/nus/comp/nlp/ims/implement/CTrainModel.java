@@ -18,6 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import sg.edu.nus.comp.nlp.ims.classifiers.CLibLinearTrainer;
+import sg.edu.nus.comp.nlp.ims.classifiers.CLibSVMTrainer;
 import sg.edu.nus.comp.nlp.ims.classifiers.IModelTrainer;
 import sg.edu.nus.comp.nlp.ims.corpus.ACorpus;
 import sg.edu.nus.comp.nlp.ims.corpus.CLexicalCorpus;
@@ -115,6 +116,7 @@ public class CTrainModel {
 			while (tokenizer.hasMoreTokens()) {
 				ss[i++] = tokenizer.nextToken();
 			}
+
 			tags.put(id, ss);
 		}
 
@@ -153,7 +155,7 @@ public class CTrainModel {
 			lexelts.get(lexeltID).addInstance(instance, true);
 		}
 		for (String lexeltID : lexelts.keySet()) {
-			System.err.println(lexeltID);
+
 			ILexelt lexelt = lexelts.get(lexeltID);
 			ArrayList<IFeatureSelector> selectors = new ArrayList<IFeatureSelector>();
 			int s2 = 0, c2 = 0, p2 = 0;

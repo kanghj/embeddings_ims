@@ -7,6 +7,7 @@ package sg.edu.nus.comp.nlp.ims.corpus;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -76,8 +77,34 @@ public class CLexicalCorpus extends ACorpus {
 	 * @see sg.edu.nus.comp.nlp.ims.corpus.ICorpus#load(java.io.BufferedReader)
 	 */
 	public boolean load(Reader p_Reader) throws Exception {
+
 		SAXBuilder builder = new SAXBuilder();
 		Document doc = builder.build(p_Reader);
+		Element root = doc.getRootElement(); // corpus
+		ArrayList<ArrayList<String>> texts = new ArrayList<ArrayList<String>>();
+		for (Object text : root.getChildren()) { // instance
+			texts.add(this.loadLexelt((Element) text));
+		}
+		texts = this.split(texts);
+
+		this.tokenize(texts);
+
+		this.posTag();
+
+		this.lemmatize();
+
+		this.genInfo();
+		this.m_Ready = true;
+
+		System.out.println("CLEXICAL CORPUS END: " + p_Reader.toString());
+		return true;
+	}
+
+	public boolean load(StringReader p_StringReader) throws Exception {
+		System.out.println("CLEXICAL CORPUS using StringReader: " + p_StringReader.toString());
+
+		SAXBuilder builder = new SAXBuilder();
+		Document doc = builder.build(p_StringReader);
 		Element root = doc.getRootElement(); // corpus
 		ArrayList<ArrayList<String>> texts = new ArrayList<ArrayList<String>>();
 		for (Object text : root.getChildren()) { // instance
@@ -89,6 +116,8 @@ public class CLexicalCorpus extends ACorpus {
 		this.lemmatize();
 		this.genInfo();
 		this.m_Ready = true;
+
+		System.out.println("CLEXICAL CORPUS END: " + p_StringReader.toString());
 		return true;
 	}
 

@@ -18,6 +18,7 @@ import java.util.List;
 import liblinear.FeatureNode;
 import liblinear.Problem;
 
+import org.apache.commons.lang3.ObjectUtils;
 import sg.edu.nus.comp.nlp.ims.feature.ABinaryFeature;
 import sg.edu.nus.comp.nlp.ims.feature.ANumericFeature;
 import sg.edu.nus.comp.nlp.ims.feature.IFeature;
@@ -88,6 +89,7 @@ public class CLibLinearLexeltWriter implements ILexeltWriter {
 		if (p_iLexelt != null) {
 			IStatistic stat = p_iLexelt.getStatistic();
 			int keySize = stat.getKeys().size();
+			System.out.println("key size is ! " + keySize);
 			retIndice = new int[keySize][0];
 			int keyIndex = 0;
 			for (keyIndex = 0;keyIndex < keySize;keyIndex++) {
@@ -96,6 +98,7 @@ public class CLibLinearLexeltWriter implements ILexeltWriter {
 						|| ABinaryFeature.class.isAssignableFrom(type)) {
 					retIndice[keyIndex] = new int[]{accuIndex++};
 				} else {
+
 					List <String> values = stat.getValue(keyIndex);
 					retIndice[keyIndex] = new int[values.size()];
 					for (int i = 0;i < values.size();i++) {
@@ -141,11 +144,18 @@ public class CLibLinearLexeltWriter implements ILexeltWriter {
 					value = p_Stat.getDefaultValue();
 				}
 				for (int i = 0;i < values.size();i++) {
-					if (values.get(i).equals(value)) {
-						exist.put(p_Indice[kIndex][i], 1.0);
-						break;
+					try {
+						if (values.get(i).equals(value)) {
+							exist.put(p_Indice[kIndex][i], 1.0);
+							break;
+						}
+					} catch (NullPointerException e) {
+
+						throw e;
+
 					}
 				}
+
 			}
 		}
 		ArrayList<Integer> indice = new ArrayList<Integer>(exist.keySet());

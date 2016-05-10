@@ -5,12 +5,7 @@
  */
 package sg.edu.nus.comp.nlp.ims.classifiers;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -115,7 +110,7 @@ public class CLibLinearEvaluator extends APreloadEvaluator {
 	public Object evaluate(Object p_Lexelt) throws Exception {
 		ILexelt lexelt = (ILexelt) p_Lexelt;
 		String lexeltID = lexelt.getID();
-		IStatistic stat = (IStatistic) this.getStatistic(lexeltID);
+		IStatistic stat = (IStatistic) this.getStatistic(lexeltID); //
 		int type = 2;
 		String firstSense = this.m_UnknownSense;
 		if (stat == null) {
@@ -175,6 +170,7 @@ public class CLibLinearEvaluator extends APreloadEvaluator {
 				}
 			}
 		}
+		System.out.println("CLIBLINEAREVALUATOR : return! "+ p_Lexelt);
 		return retVal;
 	}
 
@@ -250,6 +246,7 @@ public class CLibLinearEvaluator extends APreloadEvaluator {
 		if (!statFile.exists()) {
 			statFile = new File(this.m_StatDir + this.m_FileSeparator + p_LexeltID + ".stat");
 		}
+
 		if (!statFile.exists()) {
 			Matcher matcher = LEXELTPATTERN.matcher(p_LexeltID);
 			if (matcher.matches()) {
@@ -257,10 +254,13 @@ public class CLibLinearEvaluator extends APreloadEvaluator {
 			}
 		} else {
 			CStatistic tmp = new CStatistic();
-			if (!tmp.loadFromFile(statFile.getAbsolutePath())) {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					new GZIPInputStream(new FileInputStream(statFile)), "ISO8859-1"));
+			if (!tmp.loadFromFile(reader)) {
 				tmp = null;
 			}
 			stat = tmp;
+
 		}
 		return stat;
 	}

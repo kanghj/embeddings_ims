@@ -160,7 +160,7 @@ public class CCollocationExtractor implements IFeatureExtractor {
 		} else {
 			collocation += "C" + p_End;
 		}
-		return collocation;
+		return collocation.intern();
 	}
 
 	/**
