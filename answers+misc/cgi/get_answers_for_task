@@ -1,0 +1,19 @@
+#!/pkg/p/Python-2.0/bin/python
+
+import sys, os
+import util
+
+try:
+    task = sys.argv[1]
+except IndexError:
+    sys.exit("usage: get_answers_for_task <task name>")
+    
+answer_dir = os.path.join(util.ROOTDIR, "answers")
+
+for f in os.listdir(answer_dir):
+    if f in (".", ".."): continue
+    user, sys = f.split("-", 1)
+    u = util.User(user)
+    if u.task == task:
+        print os.path.join(answer_dir, f)
+

@@ -1,0 +1,9 @@
+ERROR: 
+Traceback (most recent call last):
+  File "/home/cotton/bin/score", line 366, in ?
+    parse_answer_line(line, key=1)
+  File "/home/cotton/bin/score", line 66, in parse_answer_line
+    match = re.match(prg, ln)
+  File "/pkg/p/Python-2.0//lib/python2.0/sre.py", line 44, in match
+    return _compile(pattern, flags).match(string)
+KeyboardInterrupt

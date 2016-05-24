@@ -1,0 +1,67 @@
+
+
+                      Senseval3: english all words task
+
+files:
+
+        README                         this file
+        all-words.dtd                  The dtd for senseval all words tasks.
+        english-all-words.xml          The corpus.
+        cl32.mrg                       Penn Treebank file for document 1 in
+                                       the corpus.
+        wsj_1695.mrg                   ditto for document 2.
+        wsj_1778.mrg                   ditto for document 3.
+
+
+The lexicon used is WordNet 1.7.1
+
+
+
+
+
+answer format
+--------------
+
+Answers should be provided in the blank answer keys at the end of the corpus file.
+Each answer should consist of zero or more sensekeys from WordNet 1.7.1 (the entry
+should be left blank if none of the senses in the lexicon match the sense of the 
+encountered word.  Multiple senses should be given if they all match the sense
+of the encountered word equally well, or in the case of compound words).
+
+
+compound words
+--------------
+
+Compound words such as "tear-filled" and "district/states" should be tagged with
+the appropriate senses of each of the component words.
+
+
+multi-word expressions
+-----------------------
+
+The indicated "head" of a multi-word expression (indicated by a combination of the sats="..." attribute and
+additional <sat...> elements) should only be tagged with a WordNet sensekey corresponding to
+the entire multi-word expression.  If no such sensekey exists, the answer key should remain blank.
+
+Note: The word in the expression identified as the "head" is just the first noun, adjective, or 
+verb in the expression.  The POS of the expression as a whole may differ from the POS of the word
+identified as the head.
+
+Misc.
+------
+
+The ID attribute tags of 'head' and 'sat' elements are pointers to the TreeBank files.
+e.g. "d001.s056.t008" refers to document #2, sentence #57, terminal #9
+
+All terminals from TreeBank are included in the corpus file.  Besides words and punctuation
+from the original documents, these include trace-elements added during the TreeBanking process.
+These can be removed by removing all lines in the corpus file that start with 0 or *.
+
+
+
+  
+
+
+
+
+

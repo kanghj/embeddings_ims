@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE corpus SYSTEM
+  "lexical-sample.dtd">
+
+<corpus lang="en">
+
+<lexelt item="wooden">
+
+<instance id="wooden.0000">
+<answer instance="wooden.0000" senseid="523270"/>
+<context>
+
+His literary imagery of the bal &amp;dash; illuminated dimly with red and green lights &amp;dash; bears a strong likeness to Lautrec&apos;s pictorial content: 
+Huysmans sketched an immense, milling crowd and the wild dancing of the polka. 
+Men, both soldier and civilian, `paradaient, les mains dans les poches&quot; (`strutted around with their hands in their pockets&quot;), and girls were `se poursuivant de me&amp;circ.me que des moutards&quot; (`chasing each other around like little urchins&quot;), while their relations were `assis sur des bancs de bois, contre le mur&quot; (`sitting on <head>wooden</head> benches against the wall&quot;).   
+
+
+</context>
+</instance>
+
+
+<instance id="wooden.0001">
+<answer instance="wooden.0001" senseid="523270"/>
+<context>
+Head for the old part of Lhasa, near the Jokhang Temple. 
+Here the streets wind at will, leading you astray through frozen mud and darkened puddles, past <head>wooden</head> gateways with their clutter of cloistered courtyards.   
+</context>
+</instance>
+</corpus>
+

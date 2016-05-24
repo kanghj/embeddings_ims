@@ -1,0 +1,567 @@
+!! SENSE MAP TABLE FOR SWEDISH SENSEVAL-2
+!! USING THE SENSE-TREES THAT APPEAR IN THE LEXICON
+!! 1 TREE FOR EVERY LEMMA
+!!
+!! FILE: swedish_lexical_sample_SENSE_LEXICON_map
+!! Used in conjunction with the "scorer2" for measuring
+!!       "mixed" and "coarse" grained policy
+!! 010423, Dimitrios Kokkinakis
+!! CHANGES: 
+!!         
+!!
+!! NOTE : NOT **ALL** SENSES APPEAR IN THE TRAIN and/or GOLD TEXTS
+!! HOWEVER, IN THE LEXICON THERE ARE "SYNTACTIC EXAMPLES" FOR THESE
+!! SENSES, SO IN A 'SENSE' THERE ARE (TRAINING) EXAMPLES FOR ALL THE
+!! MATERIAL.
+!!
+!! ANYHOW, AT THE LEXEME LEVEL, THE FOLLOWING WORDS DO NOT HAVE CORPUS
+!! EXAMPLES:
+!!	barn_1_3
+!!	betyda_1_3
+!!	bred_1_3
+!!	färg_1_3, färg_1_4
+!!	gälla_1_4
+!!	klar_1_4
+!!	konst_1_3
+!!	kraft_1_3
+!!	ledning_1_2
+!!	makt_1_2
+!!	makt_1_3
+!!	massa_1_5, massa_1_6
+!!	naturlig_1_4
+!!	program_1_4
+!!	rad_1_4
+!!	rum_1_2
+!!	scen_1_3, scen_1_4
+!!	skjuta_1_3
+!!	spela_1_3, spela_1_6
+!!	stark_1_5
+!!	ämne1_2
+!!
+
+barn_1
+barn_1_1 3 barn_1
+barn_1_2 3 barn_1
+barn_1_3 3 barn_1
+barn_1_1_a 2 barn_1_1 3 barn_1
+barn_1_1_b 2 barn_1_1 3 barn_1
+barn_1_2_a 4 barn_1_2 3 barn_1
+barn_1_2_b 4 barn_1_2 3 barn_1
+barn_1_2_c 4 barn_1_2 3 barn_1
+barn_1_2_d 4 barn_1_2 3 barn_1
+
+betyda_1
+betyda_1_1 4 betyda_1
+betyda_1_2 4 betyda_1
+betyda_1_3 4 betyda_1
+betyda_1_4 4 betyda_1
+betyda_1_1_a 1 betyda_1_1 4 betyda_1
+betyda_1_2_a 2 betyda_1_2 4 betyda_1
+betyda_1_2_b 2 betyda_1_2 4 betyda_1
+betyda_1_3_a 1 betyda_1_3 4 betyda_1
+
+betydelse_1
+betydelse_1_1 2 betydelse_1
+betydelse_1_2 2 betydelse_1
+betydelse_1_1_a 1 betydelse_1_1 2 betydelse_1
+
+bred_1
+bred_1_1 3 bred_1
+bred_1_2 3 bred_1
+bred_1_3 3 bred_1
+bred_1_1_a 1 bred_1_1 3 bred_1
+
+flytta_1
+flytta_1_1 2 flytta_1
+flytta_1_2 2 flytta_1
+flytta_1_1_a 2 flytta_1_1 2 flytta_1
+flytta_1_1_b 2 flytta_1_1 2 flytta_1
+flytta_1_2_a 2 flytta_1_2 2 flytta_1
+flytta_1_2_b 2 flytta_1_2 2 flytta_1
+
+fylla_2
+fylla_2_1 4 fylla_2
+fylla_2_2 4 fylla_2
+fylla_2_3 4 fylla_2
+fylla_2_4 4 fylla_2
+fylla_2_1_a 5 fylla_2_1 4 fylla_2
+fylla_2_1_b 5 fylla_2_1 4 fylla_2
+fylla_2_1_c 5 fylla_2_1 4 fylla_2
+fylla_2_1_d 5 fylla_2_1 4 fylla_2
+fylla_2_1_e 5 fylla_2_1 4 fylla_2
+fylla_2_2_a 3 fylla_2_2 4 fylla_2
+fylla_2_2_b 3 fylla_2_2 4 fylla_2
+fylla_2_2_c 3 fylla_2_2 4 fylla_2
+fylla_2_3_a 3 fylla_2_3 4 fylla_2
+fylla_2_3_b 3 fylla_2_3 4 fylla_2
+fylla_2_3_c 3 fylla_2_3 4 fylla_2
+
+färg_1
+färg_1_1 4 färg_1
+färg_1_2 4 färg_1
+färg_1_3 4 färg_1
+färg_1_4 4 färg_1
+färg_1_1_a 6 färg_1_1 4 färg_1
+färg_1_1_b 6 färg_1_1 4 färg_1
+färg_1_1_c 6 färg_1_1 4 färg_1
+färg_1_1_d 6 färg_1_1 4 färg_1
+färg_1_1_e 6 färg_1_1 4 färg_1
+färg_1_1_f 6 färg_1_1 4 färg_1
+färg_1_2_a 4 färg_1_2 4 färg_1
+färg_1_2_b 4 färg_1_2 4 färg_1
+färg_1_2_c 4 färg_1_2 4 färg_1
+färg_1_2_d 4 färg_1_2 4 färg_1
+färg_1_3_a 1 färg_1_3 4 färg_1
+
+följa_1
+följa_1_1 5 följa_1
+följa_1_2 5 följa_1
+följa_1_3 5 följa_1
+följa_1_4 5 följa_1
+följa_1_5 5 följa_1
+följa_1_1_a 8 följa_1_1 5 följa_1
+följa_1_1_b 8 följa_1_1 5 följa_1
+följa_1_1_c 8 följa_1_1 5 följa_1
+följa_1_1_d 8 följa_1_1 5 följa_1
+följa_1_1_e 8 följa_1_1 5 följa_1
+följa_1_1_f 8 följa_1_1 5 följa_1
+följa_1_1_g 8 följa_1_1 5 följa_1
+följa_1_1_h 8 följa_1_1 5 följa_1
+följa_1_2_a 2 följa_1_2 5 följa_1
+följa_1_2_b 2 följa_1_2 5 följa_1
+följa_1_3_a 4 följa_1_3 5 följa_1
+följa_1_3_b 4 följa_1_3 5 följa_1
+följa_1_3_c 4 följa_1_3 5 följa_1
+följa_1_3_d 4 följa_1_3 5 följa_1
+följa_1_4_a 2 följa_1_4 5 följa_1
+följa_1_4_b 2 följa_1_4 5 följa_1
+följa_1_5_a 3 följa_1_5 5 följa_1
+följa_1_5_b 3 följa_1_5 5 följa_1
+följa_1_5_c 3 följa_1_5 5 följa_1
+
+förklara_1
+förklara_1_1 2 förklara_1
+förklara_1_2 2 förklara_1
+förklara_1_1_a 3 förklara_1_1 2 förklara_1
+förklara_1_1_b 3 förklara_1_1 2 förklara_1
+förklara_1_1_c 3 förklara_1_1 2 förklara_1
+förklara_1_2_a 6 förklara_1_2 2 förklara_1
+förklara_1_2_b 6 förklara_1_2 2 förklara_1
+förklara_1_2_c 6 förklara_1_2 2 förklara_1
+förklara_1_2_d 6 förklara_1_2 2 förklara_1
+förklara_1_2_e 6 förklara_1_2 2 förklara_1
+förklara_1_2_f 6 förklara_1_2 2 förklara_1
+
+gälla_1
+gälla_1_1 4 gälla_1
+gälla_1_2 4 gälla_1
+gälla_1_3 4 gälla_1
+gälla_1_4 4 gälla_1
+gälla_1_1_a 2 gälla_1_1 4 gälla_1
+gälla_1_1_b 2 gälla_1_1 4 gälla_1
+gälla_1_2_a 3 gälla_1_2 4 gälla_1
+gälla_1_2_b 3 gälla_1_2 4 gälla_1
+gälla_1_2_c 3 gälla_1_2 4 gälla_1
+gälla_1_3_a 1 gälla_1_3 4 gälla_1
+
+handla_1
+handla_1_1 4 handla_1
+handla_1_2 4 handla_1
+handla_1_3 4 handla_1
+handla_1_4 4 handla_1
+handla_1_1_a 1 handla_1_1 4 handla_1
+handla_1_3_a 1 handla_1_3 4 handla_1
+handla_1_4_a 3 handla_1_4 4 handla_1
+handla_1_4_b 3 handla_1_4 4 handla_1
+handla_1_4_c 3 handla_1_4 4 handla_1
+
+höra_1
+höra_1_1 5 höra_1
+höra_1_2 5 höra_1
+höra_1_3 5 höra_1
+höra_1_4 5 höra_1
+höra_1_5 5 höra_1
+höra_1_1_a 3 höra_1_1 5 höra_1
+höra_1_1_b 3 höra_1_1 5 höra_1
+höra_1_1_c 3 höra_1_1 5 höra_1
+höra_1_2_a 3 höra_1_2 5 höra_1
+höra_1_2_b 3 höra_1_2 5 höra_1
+höra_1_2_c 3 höra_1_2 5 höra_1
+höra_1_3_a 3 höra_1_3 5 höra_1
+höra_1_3_b 3 höra_1_3 5 höra_1
+höra_1_3_c 3 höra_1_3 5 höra_1
+höra_1_4_a 1 höra_1_4 5 höra_1
+höra_1_5_a 4 höra_1_5 5 höra_1
+höra_1_5_b 4 höra_1_5 5 höra_1
+höra_1_5_c 4 höra_1_5 5 höra_1
+höra_1_5_d 4 höra_1_5 5 höra_1
+
+klar_1
+klar_1_1 4 klar_1
+klar_1_2 4 klar_1
+klar_1_3 4 klar_1
+klar_1_4 4 klar_1
+klar_1_1_a 3 klar_1_1 4 klar_1
+klar_1_1_b 3 klar_1_1 4 klar_1
+klar_1_1_c 3 klar_1_1 4 klar_1
+klar_1_2_a 3 klar_1_2 4 klar_1
+klar_1_2_b 3 klar_1_2 4 klar_1
+klar_1_2_c 3 klar_1_2 4 klar_1
+klar_1_3_a 3 klar_1_3 4 klar_1
+klar_1_3_b 3 klar_1_3 4 klar_1
+klar_1_3_c 3 klar_1_3 4 klar_1
+klar_1_4_a 2 klar_1_4 4 klar_1
+klar_1_4_b 2 klar_1_4 4 klar_1
+
+konst_1
+konst_1_1 3 konst_1
+konst_1_2 3 konst_1
+konst_1_3 3 konst_1
+konst_1_1_a 4 konst_1_1 3 konst_1
+konst_1_1_b 4 konst_1_1 3 konst_1
+konst_1_1_c 4 konst_1_1 3 konst_1
+konst_1_1_d 4 konst_1_1 3 konst_1
+konst_1_2_a 2 konst_1_2 3 konst_1
+konst_1_2_b 2 konst_1_2 3 konst_1
+
+kraft_1
+kraft_1_1 4 kraft_1
+kraft_1_2 4 kraft_1
+kraft_1_3 4 kraft_1
+kraft_1_4 4 kraft_1
+kraft_1_1_a 7 kraft_1_1 4 kraft_1
+kraft_1_1_b 7 kraft_1_1 4 kraft_1
+kraft_1_1_c 7 kraft_1_1 4 kraft_1
+kraft_1_1_d 7 kraft_1_1 4 kraft_1
+kraft_1_1_e 7 kraft_1_1 4 kraft_1
+kraft_1_1_f 7 kraft_1_1 4 kraft_1
+kraft_1_1_g 7 kraft_1_1 4 kraft_1
+kraft_1_2_a 4 kraft_1_2 4 kraft_1
+kraft_1_2_b 4 kraft_1_2 4 kraft_1
+kraft_1_2_c 4 kraft_1_2 4 kraft_1
+kraft_1_2_d 4 kraft_1_2 4 kraft_1
+
+kyrka_1
+kyrka_1_1 2 kyrka_1
+kyrka_1_2 2 kyrka_1
+kyrka_1_1_a 1 kyrka_1_1 2 kyrka_1
+kyrka_1_2_a 2 kyrka_1_2 2 kyrka_1
+kyrka_1_2_b 2 kyrka_1_2 2 kyrka_1
+
+känsla_1
+känsla_1_1 2 känsla_1
+känsla_1_2 2 känsla_1
+känsla_1_1_a 3 känsla_1_1 2 känsla_1
+känsla_1_1_b 3 känsla_1_1 2 känsla_1
+känsla_1_1_c 3 känsla_1_1 2 känsla_1
+känsla_1_2_a 1 känsla_1_2 2 känsla_1
+
+ledning_1
+ledning_1_1 4 ledning_1
+ledning_1_2 4 ledning_1
+ledning_1_3 4 ledning_1
+ledning_1_4 4 ledning_1
+ledning_1_3_a 1 ledning_1_3 4 ledning_1
+
+makt_1
+makt_1_1 3 makt_1
+makt_1_2 3 makt_1
+makt_1_3 3 makt_1
+makt_1_1_a 3 makt_1_1 3 makt_1
+makt_1_1_b 3 makt_1_1 3 makt_1
+makt_1_1_c 3 makt_1_1 3 makt_1
+makt_1_2_a 1 makt_1_2 3 makt_1
+
+massa_1
+massa_1_1 6 massa_1
+massa_1_2 6 massa_1
+massa_1_3 6 massa_1
+massa_1_4 6 massa_1
+massa_1_5 6 massa_1
+massa_1_6 6 massa_1
+massa_1_2_a 1 massa_1_2 6 massa_1
+massa_1_3_a 1 massa_1_3 6 massa_1
+massa_1_4_a 1 massa_1_4 6 massa_1
+
+mening_1
+mening_1_1 4 mening_1
+mening_1_2 4 mening_1
+mening_1_3 4 mening_1
+mening_1_3_a 1 mening_1_3 4 mening_1
+mening_1_4 4 mening_1
+
+måla_1
+måla_1_1 2 måla_1
+måla_1_2 2 måla_1
+måla_1_1_a 4 måla_1_1 2 måla_1
+måla_1_1_b 4 måla_1_1 2 måla_1
+måla_1_1_c 4 måla_1_1 2 måla_1
+måla_1_1_d 4 måla_1_1 2 måla_1
+måla_1_2_a 3 måla_1_2 2 måla_1
+måla_1_2_b 3 måla_1_2 2 måla_1
+måla_1_2_c 3 måla_1_2 2 måla_1
+
+natur_1
+natur_1_1 3 natur_1
+natur_1_2 3 natur_1
+natur_1_3 3 natur_1
+natur_1_1_a 1 natur_1_1 3 natur_1
+natur_1_2_a 1 natur_1_2 3 natur_1
+natur_1_3_a 2 natur_1_3 3 natur_1
+natur_1_3_b 2 natur_1_3 3 natur_1
+
+naturlig_1
+naturlig_1_1 4 naturlig_1
+naturlig_1_2 4 naturlig_1
+naturlig_1_3 4 naturlig_1
+naturlig_1_4 4 naturlig_1
+naturlig_1_1_a 2 naturlig_1_1 4 naturlig_1
+naturlig_1_1_b 2 naturlig_1_1 4 naturlig_1
+naturlig_1_2_a 1 naturlig_1_2 4 naturlig_1
+naturlig_1_3_a 1 naturlig_1_3 4 naturlig_1
+naturlig_1_4_a 1 naturlig_1_4 4 naturlig_1
+
+program_1
+program_1_1 4 program_1
+program_1_2 4 program_1
+program_1_3 4 program_1
+program_1_4 4 program_1
+program_1_1_a 5 program_1_1 4 program_1
+program_1_1_b 5 program_1_1 4 program_1
+program_1_1_c 5 program_1_1 4 program_1
+program_1_1_d 5 program_1_1 4 program_1
+program_1_1_e 5 program_1_1 4 program_1
+program_1_2_a 1 program_1_2 4 program_1
+program_1_3_a 2 program_1_3 4 program_1
+program_1_3_b 2 program_1_3 4 program_1
+program_1_4_a 2 program_1_4 4 program_1
+program_1_4_b 2 program_1_4 4 program_1
+
+rad_1
+rad_1_1 4 rad_1
+rad_1_2 4 rad_1
+rad_1_3 4 rad_1
+rad_1_4 4 rad_1
+rad_1_1_a 1 rad_1_1 4 rad_1
+rad_1_3_a 2 rad_1_3 4 rad_1
+rad_1_3_b 2 rad_1_3 4 rad_1
+
+rum_1
+rum_1_1 3 rum_1
+rum_1_2 3 rum_1
+rum_1_3 3 rum_1
+rum_1_1_a 5 rum_1_1 3 rum_1
+rum_1_1_b 5 rum_1_1 3 rum_1
+rum_1_1_c 5 rum_1_1 3 rum_1
+rum_1_1_d 5 rum_1_1 3 rum_1
+rum_1_1_e 5 rum_1_1 3 rum_1
+rum_1_2_a 1 rum_1_2 3 rum_1
+rum_1_3_a 1 rum_1_3 3 rum_1
+
+scen_1
+scen_1_1 4 scen_1
+scen_1_2 4 scen_1
+scen_1_3 4 scen_1
+scen_1_4 4 scen_1
+scen_1_1_a 4 scen_1_1 4 scen_1
+scen_1_1_b 4 scen_1_1 4 scen_1
+scen_1_1_c 4 scen_1_1 4 scen_1
+scen_1_1_d 4 scen_1_1 4 scen_1
+scen_1_2_a 3 scen_1_2 4 scen_1
+scen_1_2_b 3 scen_1_2 4 scen_1
+scen_1_2_c 3 scen_1_2 4 scen_1
+
+skjuta_1
+skjuta_1_1 6 skjuta_1
+skjuta_1_2 6 skjuta_1
+skjuta_1_3 6 skjuta_1
+skjuta_1_4 6 skjuta_1
+skjuta_1_5 6 skjuta_1
+skjuta_1_6 6 skjuta_1
+skjuta_1_1_a 8 skjuta_1_1 6 skjuta_1
+skjuta_1_1_b 8 skjuta_1_1 6 skjuta_1
+skjuta_1_1_c 8 skjuta_1_1 6 skjuta_1
+skjuta_1_1_d 8 skjuta_1_1 6 skjuta_1
+skjuta_1_1_e 8 skjuta_1_1 6 skjuta_1
+skjuta_1_1_f 8 skjuta_1_1 6 skjuta_1
+skjuta_1_1_g 8 skjuta_1_1 6 skjuta_1
+skjuta_1_1_h 8 skjuta_1_1 6 skjuta_1
+skjuta_1_2_a 1 skjuta_1_2 6 skjuta_1
+skjuta_1_3_a 1 skjuta_1_3 6 skjuta_1
+skjuta_1_4_a 3 skjuta_1_4 6 skjuta_1 
+skjuta_1_4_b 3 skjuta_1_4 6 skjuta_1 
+skjuta_1_4_c 3 skjuta_1_4 6 skjuta_1
+skjuta_1_5_a 2 skjuta_1_5 6 skjuta_1
+skjuta_1_5_b 2 skjuta_1_5 6 skjuta_1
+
+spela_1
+spela_1_1 6 spela_1
+spela_1_2 6 spela_1
+spela_1_3 6 spela_1
+spela_1_4 6 spela_1
+spela_1_5 6 spela_1
+spela_1_6 6 spela_1
+spela_1_1_a 4 spela_1_1 6 spela_1
+spela_1_1_b 4 spela_1_1 6 spela_1
+spela_1_1_c 4 spela_1_1 6 spela_1
+spela_1_1_d 4 spela_1_1 6 spela_1
+spela_1_2_a 7 spela_1_2 6 spela_1
+spela_1_2_b 7 spela_1_2 6 spela_1
+spela_1_2_c 7 spela_1_2 6 spela_1
+spela_1_2_d 7 spela_1_2 6 spela_1
+spela_1_2_e 7 spela_1_2 6 spela_1
+spela_1_2_f 7 spela_1_2 6 spela_1
+spela_1_2_g 7 spela_1_2 6 spela_1
+spela_1_3_a 1 spela_1_3 6 spela_1
+spela_1_4_a 6 spela_1_4 6 spela_1
+spela_1_4_b 6 spela_1_4 6 spela_1
+spela_1_4_c 6 spela_1_4 6 spela_1
+spela_1_4_d 6 spela_1_4 6 spela_1
+spela_1_4_e 6 spela_1_4 6 spela_1
+spela_1_4_f 6 spela_1_4 6 spela_1
+spela_1_5_a 4 spela_1_5 6 spela_1
+spela_1_5_b 4 spela_1_5 6 spela_1
+spela_1_5_c 4 spela_1_5 6 spela_1
+spela_1_5_d 4 spela_1_5 6 spela_1
+spela_1_6_a 1 spela_1_6 6 spela_1
+
+stark_1
+stark_1_1 5 stark_1
+stark_1_2 5 stark_1
+stark_1_3 5 stark_1
+stark_1_4 5 stark_1
+stark_1_5 5 stark_1
+stark_1_1_a 4 stark_1_1 5 stark_1
+stark_1_1_b 4 stark_1_1 5 stark_1
+stark_1_1_c 4 stark_1_1 5 stark_1
+stark_1_1_d 4 stark_1_1 5 stark_1
+stark_1_3_a 2 stark_1_3 5 stark_1
+stark_1_3_b 2 stark_1_3 5 stark_1
+stark_1_4_a 4 stark_1_4 5 stark_1
+stark_1_4_b 4 stark_1_4 5 stark_1
+stark_1_4_c 4 stark_1_4 5 stark_1
+stark_1_4_d 4 stark_1_4 5 stark_1
+stark_1_5_a 1 stark_1_5 5 stark_1
+
+tillfälle_1
+tillfälle_1_1 2 tillfälle_1
+tillfälle_1_2 2 tillfälle_1
+tillfälle_1_1_a 3 tillfälle_1_1 2 tillfälle_1 
+tillfälle_1_1_b 3 tillfälle_1_1 2 tillfälle_1 
+tillfälle_1_1_c 3 tillfälle_1_1 2 tillfälle_1 
+tillfälle_1_2_a 1 tillfälle_1_2 2 tillfälle_1
+
+uppgift_1
+uppgift_1_1 2 uppgift_1
+uppgift_1_2 2 uppgift_1
+uppgift_1_2_a 3 uppgift_1_2 2  uppgift_1
+uppgift_1_2_b 3 uppgift_1_2 2  uppgift_1
+uppgift_1_2_c 3 uppgift_1_2 2  uppgift_1
+
+vatten_1
+vatten_1_1 2 vatten_1
+vatten_1_2 2 vatten_1
+vatten_1_1_a 2 vatten_1_1 2 vatten_1
+vatten_1_1_b 2 vatten_1_1 2 vatten_1
+vatten_1_2_a 1 vatten_1_2 2 vatten_1
+
+vänta_1
+vänta_1_1 3 vänta_1
+vänta_1_2 3 vänta_1
+vänta_1_3 3 vänta_1
+vänta_1_1_a 6 vänta_1_1 3 vänta_1
+vänta_1_1_b 6 vänta_1_1 3 vänta_1
+vänta_1_1_c 6 vänta_1_1 3 vänta_1
+vänta_1_1_d 6 vänta_1_1 3 vänta_1
+vänta_1_1_e 6 vänta_1_1 3 vänta_1
+vänta_1_1_f 6 vänta_1_1 3 vänta_1
+vänta_1_2_a 4 vänta_1_2 3 vänta_1
+vänta_1_2_b 4 vänta_1_2 3 vänta_1
+vänta_1_2_c 4 vänta_1_2 3 vänta_1
+vänta_1_2_d 4 vänta_1_2 3 vänta_1
+vänta_1_3_a 5 vänta_1_3 3 vänta_1
+vänta_1_3_b 5 vänta_1_3 3 vänta_1
+vänta_1_3_c 5 vänta_1_3 3 vänta_1
+vänta_1_3_d 5 vänta_1_3 3 vänta_1
+vänta_1_3_e 5 vänta_1_3 3 vänta_1
+
+växa_1
+växa_1_1 2 växa_1
+växa_1_2 2 växa_1
+växa_1_1_a 7 växa_1_1 2 växa_1
+växa_1_1_b 7 växa_1_1 2 växa_1
+växa_1_1_c 7 växa_1_1 2 växa_1
+växa_1_1_d 7 växa_1_1 2 växa_1
+växa_1_1_e 7 växa_1_1 2 växa_1
+växa_1_1_f 7 växa_1_1 2 växa_1
+växa_1_1_g 7 växa_1_1 2 växa_1
+växa_1_2_a 2 växa_1_2 2 växa_1
+växa_1_2_b 2 växa_1_2 2 växa_1
+
+ämne_1
+ämne_1_1 4 ämne_1
+ämne_1_2 4 ämne_1
+ämne_1_3 4 ämne_1
+ämne_1_4 4 ämne_1
+ämne_1_1_a 1 ämne_1_1 4 ämne_1
+ämne_1_2_a 2 ämne_1_2 4 ämne_1
+ämne_1_2_b 2 ämne_1_2 4 ämne_1
+ämne_1_3_a 1 ämne_1_3 4 ämne_1
+
+öka_1
+öka_1_1 2 öka_1
+öka_1_2 2 öka_1
+öka_1_2_a 2 öka_1_2 2 öka_1
+öka_1_2_b 2 öka_1_2 2 öka_1
+
+öppen_1
+öppen_1_1 7 öppen_1
+öppen_1_2 7 öppen_1
+öppen_1_3 7 öppen_1
+öppen_1_4 7 öppen_1
+öppen_1_5 7 öppen_1
+öppen_1_6 7 öppen_1
+öppen_1_7 7 öppen_1
+öppen_1_1_a 7 öppen_1_1 7 öppen_1
+öppen_1_1_b 7 öppen_1_1 7 öppen_1
+öppen_1_1_c 7 öppen_1_1 7 öppen_1
+öppen_1_1_d 7 öppen_1_1 7 öppen_1
+öppen_1_1_e 7 öppen_1_1 7 öppen_1
+öppen_1_1_f 7 öppen_1_1 7 öppen_1
+öppen_1_1_g 7 öppen_1_1 7 öppen_1
+öppen_1_2_a 2 öppen_1_2 7 öppen_1
+öppen_1_2_b 2 öppen_1_2 7 öppen_1
+öppen_1_3_a 1 öppen_1_3 7 öppen_1
+öppen_1_4_a 4 öppen_1_4 7 öppen_1
+öppen_1_4_b 4 öppen_1_4 7 öppen_1
+öppen_1_4_c 4 öppen_1_4 7 öppen_1
+öppen_1_4_d 4 öppen_1_4 7 öppen_1
+öppen_1_5_a 3 öppen_1_5 7 öppen_1
+öppen_1_5_b 3 öppen_1_5 7 öppen_1
+öppen_1_5_c 3 öppen_1_5 7 öppen_1
+öppen_1_6_a 2 öppen_1_6 7 öppen_1
+öppen_1_6_b 2 öppen_1_6 7 öppen_1
+öppen_1_7_a 2 öppen_1_7 7 öppen_1
+öppen_1_7_b 2 öppen_1_7 7 öppen_1
+
+öppna_1
+öppna_1_1 4 öppna_1
+öppna_1_2 4 öppna_1
+öppna_1_3 4 öppna_1
+öppna_1_4 4 öppna_1
+öppna_1_1_a 9 öppna_1_1 4 öppna_1
+öppna_1_1_b 9 öppna_1_1 4 öppna_1
+öppna_1_1_c 9 öppna_1_1 4 öppna_1
+öppna_1_1_d 9 öppna_1_1 4 öppna_1
+öppna_1_1_e 9 öppna_1_1 4 öppna_1
+öppna_1_1_f 9 öppna_1_1 4 öppna_1
+öppna_1_1_g 9 öppna_1_1 4 öppna_1
+öppna_1_1_h 9 öppna_1_1 4 öppna_1
+öppna_1_1_i 9 öppna_1_1 4 öppna_1
+öppna_1_2_a 3 öppna_1_2 4 öppna_1
+öppna_1_2_b 3 öppna_1_2 4 öppna_1
+öppna_1_2_c 3 öppna_1_2 4 öppna_1
+öppna_1_3_a 2 öppna_1_3 4 öppna_1
+öppna_1_3_b 2 öppna_1_3 4 öppna_1
+öppna_1_4_a 2 öppna_1_4 4 öppna_1
+öppna_1_4_b 2 öppna_1_4 4 öppna_1

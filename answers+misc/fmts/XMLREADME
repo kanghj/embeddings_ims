@@ -1,0 +1,82 @@
+		      Preparing Corpus Data for Senseval
+
+While most of the specific issues that have arisen in preparation of senseval
+corpus data has been related to multilingual encodings, there is one thing that
+may help the language coordinators:  how to check your own document before
+submitting it.
+
+Corpus data can be checked by running an xml parser on it.  There are two
+distinct levels of checking constraints:  well formedness and validity.  well
+formedness is easier to accomplish than validity.  An xml document (in this
+case the senseval corpus) is well formed (roughly) if all it's tags are
+balanced, and all the tags attributes are properly denoted and delimited, and
+the character set is properly encoded.  Validity means the document is well
+formed and conforms to the document type definition (dtd) specified.
+
+In preparing a senseval corpus, the technical details of these properties
+aren't so important because xml parsers will figure this stuff out.  Here's a
+list of xml parsers and associated URLs:
+
+     microsoft's IE (no url)
+     Jaxp		http://java.sun.com/xml/download.html
+     xerxes		http://xml.apache.org/~andyc/xerces2/
+     pxp		http://www.ocaml-programming.de/programming/pxp.html
+     xp			http://www.jclark.com/xml/
+
+additionally, there are parsers available in the standard distributions of
+recent versions common scripting languages such as perl and python. 
+
+       (www.python.org, www.perl.org)
+
+Use them!  They will help prepare your data.
+
+Below are some items that have come up so far:
+
+1. entities -- 
+
+entities are encodings of special characters into the document.  By default,
+xml assumes the following entity sets:
+
+		Char     In XML
+		-----------------
+	         '&' ->  &amp;
+		 '"' ->  &quot;
+		 "'" ->  &apos;
+		 '<' ->  &lt;
+		 '>' ->  &gt;
+
+Oftentimes, one may want to include other entity sets for special characters,
+etc.  How do you do this?  You can simply add the entity declarations to the
+dtd for the document you are preparing and send it to us with your corpus data
+-- preferably embedded in it.
+
+
+2. Attributes and ID's can't be encoded any old way:
+
+When you make an xml tag, <tag id="ID1" attribute1="XXX" attribute2="XXX>
+
+In particular, if the lemma for a word contains specially encoded characters,
+then it may not work.  
+
+For example, <instance id="dance.001"> will work, but if "dance" is in UTF8
+encoding for the nearest bangla translation of "dance", then "dance" may not
+be substitutable with the bangla translation.
+
+The definition for acceptable ids and attributes are here: 
+
+      http://www.w3.org/TR/1998/REC-xml-19980210#id
+      http://www.w3.org/TR/1998/REC-xml-19980210#NT-AttValue
+
+If that's too much to decipher, then it will suffice to limit the ids and
+attributes to alphanumerics with dashes.
+
+3. Choosing an encoding.
+
+Many systems don't have a whole bunch of unicode encodings installed.  If you'd
+like to make your data more accessible, you should try either iso-8859-1 or 
+UTF-8 encodings, as these seem to be the most commonly used and installed
+encodings. Other encodings will work probably fine, but will likely have a more
+limited audience.
+
+
+
