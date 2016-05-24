@@ -69,6 +69,10 @@ NOUN_TRG_FILES = onemillion/noun/training_data.xml onemillion/noun/training_data
 train_one_million: build
 	./train_with_senna.bash $(NOUN_TRG_FILES) allWordsTrainedDir
 
+# https://gitlab.com/kanghongjin/ims_oneMillionTrainedDirContextSumWN21.git 
+# https://gitlab.com/kanghongjin/ims_oneMillionTrainedDirWN21.git
+# https://gitlab.com/kanghongjin/oneMillionTrainedDirContextSum.git 
+# models is provided on the nus nlp website
 
 test_all_words_se2_ims: build
 	./testFine.bash models/ corpora/english-all-words/test/eng-all-words.test.xml  examples/se2.eng-all-words.test.lexelt SE2_AW_output examples/wn17.index.sense
