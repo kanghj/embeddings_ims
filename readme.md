@@ -9,7 +9,10 @@ Zhong, Zhi, and Hwee Tou Ng. "It makes sense: A wide-coverage word sense disambi
 It can now make use of word embeddings!
 
 First setup IMS according to the IMS setting up guide in their readme.
-The libs files, examples files, and the models files should be downloaded.
+The libs files, examples files, and the ~~models~~ files should be downloaded.
+This should be downloaded too: http://commons.apache.org/proper/commons-lang/download_lang.cgi, and the entire folder placed in the libs folder. 
+ http://nlp.stanford.edu/software/stanford-parser-full-2015-12-09.zip should be downloaded too. stanford-parser-3.6.0-models.jar, stanford-parser.jar, slf4j-api.jar and slf4j-simple.jar placed in the libs folder.
+
 
 For running the code here, make 2 empty directories, trainedDir and resultDir.
 From the Makefile here,
