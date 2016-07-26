@@ -22,10 +22,11 @@ From the Makefile here,
 * To run on Senseval2 Lexical Sample task, run `make senseval2`.
 * To run on Senseval2 Lexical Sample task, run `make senseval3`.
 
-* To run on Senseval2 All Words task, run `test_all_words_se2`
-* To run on Senseval3 All Words task, run `test_all_words_se3`
-* For Semeval-2007, `test_fine_all_words_SE2007` and `test_coarse_all_words_SE2007`
+* To run on Senseval2 All Words task, run `make test_all_words_se2` (if there are any permissions error when writing to file, make a file `SE2_AW_output`)
+* To run on Senseval3 All Words task, run `make test_all_words_se3`(if there are any permissions error when writing to file, make a file `SE3_AW_output`)
+* For Semeval-2007, `make test_fine_all_words_SE2007` and `make test_coarse_all_words_SE2007` (if there are permissions error when writing to file, make files `SE2007_AW_output` and `SE2007_AW_Coarse_output`)
 
+* for CLWSD, `make test_CLWSD_Context_Sum` and `make test_CLWSD_IMS`
 
 #Notes about files:
 `./corpora` contains the senseval2 files
