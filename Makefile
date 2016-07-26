@@ -90,19 +90,19 @@ test_all_words_se3: build
 	./testFineWithSenna.bash oneMillionTrainedDirContextSum/ EnglishAW.test/english-all-words.xml examples/se3.eng-all-words.test.lexelt SE3_AW_output  examples/wn17.index.sense
 	./scorer.bash SE3_AW_output EnglishAW.test/EnglishAW.test.key 
 
-test_fine_all_words_SE2007:
+test_fine_all_words_SE2007: build
 	./testFineWithSenna.bash ims_oneMillionTrainedDirContextSumWN21/ semeval-2007/test/all-words/english-all-words.test.xml examples/se4.eng-all-words.test.lexelt SE2007_AW_output  examples/wn21.index.sense 
 	./scorer.bash SE2007_AW_output  semeval-2007/key/english_all_words_key 
 
-test_fine_all_words_SE2007_ims:
+test_fine_all_words_SE2007_ims: build
 	./testFine.bash ims_oneMillionTrainedDirWN21/ semeval-2007/test/all-words/english-all-words.test.xml examples/se4.eng-all-words.test.lexelt SE2007_AW_output  examples/wn21.index.sense 
 	./scorer.bash SE2007_AW_output  semeval-2007/key/english_all_words_key 
 
-test_coarse_all_words_SE2007:
+test_coarse_all_words_SE2007: build
 	./testCoarseWithSenna.bash ims_oneMillionTrainedDirContextSumWN21/ semeval-2007-coarse-grained-all-words/test/eng-coarse-all-words.xml SE2007_AW_Coarse_output examples/wn21.index.sense
 	cd semeval-2007-coarse-grained-all-words/key; perl scorer.pl ../../SE2007_AW_Coarse_output
 
-test_coarse_all_words_SE2007_ims:
+test_coarse_all_words_SE2007_ims: build
 	./testCoarse.bash ims_oneMillionTrainedDirWN21/ semeval-2007-coarse-grained-all-words/test/eng-coarse-all-words.xml  SE2007_AW_Coarse_output examples/wn21.index.sense 
 	cd semeval-2007-coarse-grained-all-words/key; perl scorer.pl ../../SE2007_AW_Coarse_output
 
@@ -122,7 +122,7 @@ CLWSD_IMS:
 score_CLWSD:
 	./scorer.bash resultDir/all.combined.amended.result $(generated_ims_format_training.key)
 
-test_CLWSD_Context_Sum: clean CLWSD_Context_Sum prepare_result score_CLWSD
+test_CLWSD_Context_Sum: clean build CLWSD_Context_Sum prepare_result score_CLWSD
 
-test_CLWSD_IMS: clean CLWSD_IMS prepare_result score_CLWSD
+test_CLWSD_IMS: clean build CLWSD_IMS prepare_result score_CLWSD
     
