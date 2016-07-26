@@ -11,7 +11,10 @@ It can now make use of word embeddings!
 First setup IMS according to the IMS setting up guide in their readme.
 The libs files, examples files, and the ~~models~~ files should be downloaded.
 This should be downloaded too: http://commons.apache.org/proper/commons-lang/download_lang.cgi, and the entire folder placed in the libs folder. 
- http://nlp.stanford.edu/software/stanford-parser-full-2015-12-09.zip should be downloaded too. stanford-parser-3.6.0-models.jar, stanford-parser.jar, slf4j-api.jar and slf4j-simple.jar placed in the libs folder.
+ 
+http://nlp.stanford.edu/software/stanford-parser-full-2015-12-09.zip should be downloaded too. stanford-parser-3.6.0-models.jar, stanford-parser.jar, slf4j-api.jar and slf4j-simple.jar placed in the libs folder.
+
+The following files will be helpful for SE-2007: WordNet 2.1 should be downloaded, its dict directory placed in lib/dict21. In libs/prop.xml, under jnwl_properties/dictionary/param[name=file_manager]/param[name=dictionary_path], the value should be changed to lib/dict21. 
 
 
 For running the code here, make 2 empty directories, trainedDir and resultDir.
