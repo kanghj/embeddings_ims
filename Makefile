@@ -65,17 +65,37 @@ evaluate3_ls:
 	./scorer.bash resultDir/all.combined.amended.result EnglishLS.test/EnglishLS.test.amended.key 
 
 
-NOUN_TRG_FILES = onemillion/noun/training_data.xml onemillion/noun/training_data.key
-train_one_million: build
-	./train_with_senna.bash $(NOUN_TRG_FILES) allWordsTrainedDir
+NOUN_TRG_FILES = one-million-sense-tagged-instances-wn171/noun/ one-million-sense-tagged-instances-wn171/noun/
+train_one_million_nouns: build
+	./train_with_senna_all_words.bash $(NOUN_TRG_FILES) allWordsTrainedDir
+
+VERB_TRG_FILES = one-million-sense-tagged-instances-wn171/verb/ one-million-sense-tagged-instances-wn171/verb/
+train_one_million_verbs: build
+	./train_with_senna_all_words.bash $(VERB_TRG_FILES) allWordsTrainedDir
+
+ADJ_TRG_FILES = one-million-sense-tagged-instances-wn171/adj/ one-million-sense-tagged-instances-wn171/adj/
+train_one_million_adjs: build
+	./train_with_senna_all_words.bash $(ADJ_TRG_FILES) allWordsTrainedDir
+
+ADV_TRG_FILES = one-million-sense-tagged-instances-wn171/adv/ one-million-sense-tagged-instances-wn171/adv/
+train_one_million_advs: build
+	./train_with_senna_all_words.bash $(ADV_TRG_FILES) allWordsTrainedDir
+
+train_one_million: train_one_million_nouns train_one_million_verbs train_one_million_adjs train_one_million_advs
 
 # https://gitlab.com/kanghongjin/ims_oneMillionTrainedDirContextSumWN21.git 
 # https://gitlab.com/kanghongjin/ims_oneMillionTrainedDirWN21.git
 # https://gitlab.com/kanghongjin/oneMillionTrainedDirContextSum.git 
-# models is provided on the nus nlp website
+# /models/ for the original ims, and for the one million trained sense tagged dataset
+#     is provided on the nus nlp website
 
 test_all_words_se2_ims: build
 	./testFine.bash models/ corpora/english-all-words/test/eng-all-words.test.xml  examples/se2.eng-all-words.test.lexelt SE2_AW_output examples/wn17.index.sense
+	./scorer.bash SE2_AW_output answers+misc/tasks/english-all-words/key
+
+
+test_all_words_se2_trained: build
+	./testFineWithSenna.bash allWordsTrainedDir/ corpora/english-all-words/test/eng-all-words.test.xml examples/se2.eng-all-words.test.lexelt SE2_AW_output examples/wn17.index.sense
 	./scorer.bash SE2_AW_output answers+misc/tasks/english-all-words/key
 
 test_all_words_se2: build
@@ -86,12 +106,20 @@ test_all_words_se3_ims: build
 	./testFine.bash models/ EnglishAW.test/english-all-words.xml  examples/se3.eng-all-words.test.lexelt SE3_AW_output examples/wn17.index.sense	
 	./scorer.bash SE3_AW_output EnglishAW.test/EnglishAW.test.key 
 
+test_all_words_se3_trained: build
+	./testFineWithSenna.bash allWordsTrainedDir/ EnglishAW.test/english-all-words.xml examples/se3.eng-all-words.test.lexelt SE3_AW_output  examples/wn17.index.sense
+	./scorer.bash SE3_AW_output EnglishAW.test/EnglishAW.test.key 
+
 test_all_words_se3: build
 	./testFineWithSenna.bash oneMillionTrainedDirContextSum/ EnglishAW.test/english-all-words.xml examples/se3.eng-all-words.test.lexelt SE3_AW_output  examples/wn17.index.sense
 	./scorer.bash SE3_AW_output EnglishAW.test/EnglishAW.test.key 
 
 test_fine_all_words_SE2007: build
-	./testFineWithSenna.bash ims_oneMillionTrainedDirContextSumWN21/ semeval-2007/test/all-words/english-all-words.test.xml examples/se4.eng-all-words.test.lexelt SE2007_AW_output  examples/wn21.index.sense 
+	./testFineWithSenna.bash oneMillionTrainedDirContextSum/ semeval-2007/test/all-words/english-all-words.test.xml examples/se4.eng-all-words.test.lexelt SE2007_AW_output  examples/wn21.index.sense 
+	./scorer.bash SE2007_AW_output  semeval-2007/key/english_all_words_key 
+
+test_fine_all_words_SE2007_trained: build
+	./testFineWithSenna.bash allWordsTrainedDirWN21/ semeval-2007/test/all-words/english-all-words.test.xml examples/se4.eng-all-words.test.lexelt SE2007_AW_output  examples/wn21.index.sense 
 	./scorer.bash SE2007_AW_output  semeval-2007/key/english_all_words_key 
 
 test_fine_all_words_SE2007_ims: build
@@ -102,6 +130,10 @@ test_coarse_all_words_SE2007: build
 	./testCoarseWithSenna.bash ims_oneMillionTrainedDirContextSumWN21/ semeval-2007-coarse-grained-all-words/test/eng-coarse-all-words.xml SE2007_AW_Coarse_output examples/wn21.index.sense
 	cd semeval-2007-coarse-grained-all-words/key; perl scorer.pl ../../SE2007_AW_Coarse_output
 
+test_coarse_all_words_SE2007: build
+	./testCoarseWithSenna.bash allWordsTrainedDirWN21/ semeval-2007-coarse-grained-all-words/test/eng-coarse-all-words.xml SE2007_AW_Coarse_output examples/wn21.index.sense
+	cd semeval-2007-coarse-grained-all-words/key; perl scorer.pl ../../SE2007_AW_Coarse_output
+	
 test_coarse_all_words_SE2007_ims: build
 	./testCoarse.bash ims_oneMillionTrainedDirWN21/ semeval-2007-coarse-grained-all-words/test/eng-coarse-all-words.xml  SE2007_AW_Coarse_output examples/wn21.index.sense 
 	cd semeval-2007-coarse-grained-all-words/key; perl scorer.pl ../../SE2007_AW_Coarse_output
